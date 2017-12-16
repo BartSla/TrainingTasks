@@ -9,6 +9,7 @@ public class Main {
         Fibonacci fibonacci = new Fibonacci();
         Scanner scanner = new Scanner(System.in);
 
+
         System.out.println("Enter which element of Fibonacci sequence you want to know: ");
         long n = scanner.nextLong();
         scanner.close();
