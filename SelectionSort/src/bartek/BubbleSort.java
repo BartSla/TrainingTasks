@@ -15,15 +15,9 @@ public class BubbleSort {
                     arrayToSort[j + 1] = temp;
                 }
             }
-
-
         }
         return arrayToSort;
-
-
     }
-
-
 }
 // 0 1 2 3 4 5 6
 // 8 2 5 6 9 1 3

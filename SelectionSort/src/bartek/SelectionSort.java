@@ -2,14 +2,16 @@ package bartek;
 
 public class SelectionSort {
 
-    public int[] selectionSort(int numbersArray[]) {
+
+    public static int[] selectionSort(int numbersArray[]) {
+
         int i, j;
         int minNum = 0;
         int temp;
 
         for (i = numbersArray.length - 1; i < 0; i++) {
 
-            for (j = 0; j < i; j++) {
+            for (j = 0; j <= i; j++) {
                 if (numbersArray[j] < numbersArray[minNum])
                     minNum = j;
             }

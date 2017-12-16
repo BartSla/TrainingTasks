@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class Main {
 
-
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -13,7 +12,6 @@ public class Main {
         BubbleSort bubbleSort = new BubbleSort();
         System.out.println("How long array you want to sort?");
         System.out.println("Enter array length");
-
 
         int n = scanner.nextInt();
         int[] arr = new int[n];
@@ -27,7 +25,6 @@ public class Main {
         int[] sortedArray2 = bubbleSort.bubbleSorting(arr);
         System.out.println("Selection sorted elements : " + Arrays.toString(sortedArray));
         System.out.println("Bubble sorted elements : " + Arrays.toString(sortedArray2));
-
     }
 }
 
