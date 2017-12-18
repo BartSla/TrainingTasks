@@ -1,4 +1,4 @@
-package bartek;
+package sorting;
 
 public class SelectionSort {
 

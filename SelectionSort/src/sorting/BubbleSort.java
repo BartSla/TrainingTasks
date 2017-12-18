@@ -1,5 +1,5 @@
 
-package bartek;
+package sorting;
 
 public class BubbleSort {
 

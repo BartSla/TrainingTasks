@@ -1,15 +1,16 @@
-package bartek;
+package test;
 
 import org.junit.Assert;
 import org.junit.Test;
+import sorting.BubbleSort;
 
 public class BubbleSortTest {
 
     @Test
     public void sortingTest() {
 
-        int[] givenArray = {2, 1, 3, 4, 5, 7, 6};
+        int[] givenArray = {1, 2, 3, 4, 5, 6, 7};
         int[] bubbleExpectedArray = BubbleSort.bubbleSorting(givenArray);
-        Assert.assertEquals(bubbleExpectedArray.length, givenArray.length);
+        Assert.assertArrayEquals(bubbleExpectedArray, givenArray);
     }
 }

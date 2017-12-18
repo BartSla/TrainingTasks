@@ -1,15 +1,16 @@
-package bartek;
+package test;
 
 import org.junit.Assert;
 import org.junit.Test;
+import sorting.SelectionSort;
 
 public class SelectionSortTest {
 
     @Test
     public void selectionSortingTest() {
 
-        int[] givenArray = {2, 1, 3, 4, 5, 7, 6};
+        int[] givenArray = {1, 2, 3, 4, 5, 6, 7};
         int[] selectionExpectedArray = SelectionSort.selectionSort(givenArray);
-        Assert.assertEquals(selectionExpectedArray.length, givenArray.length);
+        Assert.assertArrayEquals(selectionExpectedArray, givenArray);
     }
 }
