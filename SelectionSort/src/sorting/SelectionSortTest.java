@@ -1,8 +1,7 @@
-package test;
+package sorting;
 
 import org.junit.Assert;
 import org.junit.Test;
-import sorting.SelectionSort;
 
 public class SelectionSortTest {
 
