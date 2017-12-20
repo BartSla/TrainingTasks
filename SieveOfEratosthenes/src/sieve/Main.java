@@ -13,14 +13,6 @@ public class Main {
         System.out.println("Enter maximum numerical range to find prime numbers: ");
         int n = scanner.nextInt();
         scanner.close();
-        try {
-            if (n <= 1) {
-                System.out.println("Enter value greater then 2");
-            }
-        }catch(ArrayIndexOutOfBoundsException e){
-                System.out.println("Enter value greater then 2");
-            }
-
         System.out.println(Arrays.toString(sieve.searchPrimary(n)));
     }
 }
