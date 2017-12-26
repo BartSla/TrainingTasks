@@ -1,1 +1,0 @@
-# solutions-4-bartlomiejsla
