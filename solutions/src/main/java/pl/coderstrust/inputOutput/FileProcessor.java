@@ -36,23 +36,20 @@ public class FileProcessor {
         try {
             file.close();
         } catch (IOException e) {
-            System.out.println("Erro while clos");
+            System.out.println("Error while close");
             System.exit(3);
         }
-
         return inputString;
-
     }
 
-    public void writeNumbersToFile(StringBuilder stringIn, String resultFileName) {
+    public void writeNumbersToFile(String stringIn, String resultFileName) {
 
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(resultFileName));
-            writer.write(stringIn.toString());
+            writer.write(stringIn);
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 }
-
