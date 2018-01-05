@@ -7,6 +7,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,15 +30,15 @@ public class ProcessorTest {
     Processor processor;
 
     @Test
-    public void shouldReadNumbersFromInputFileAndWriteStringToOutputFile() {
-
-        List<Integer> list = Arrays.asList(1, 2);
+    public void shouldReadNumbersFromInputFileAndWriteStringToOutputFile() throws IOException {
+        List<String> testingString = Arrays.asList("3  5  66  77  99  222  333  444  555 666");
+        List<String> list = Arrays.asList("1  2");
         Mockito.when(fileProcessor.readNumbersFromFile(anyString())).thenReturn(list);
 
-        String processedNumbers = "1 + 2 = 3";
+        List<String> processedNumbers = Arrays.asList("1 + 2 = 3");
         Mockito.when(numbersProcessor.processLine(anyList())).thenReturn(processedNumbers);
 
-        fileProcessor.writeNumbersToFile(pathIn, pathOut);
+        fileProcessor.writeNumbersToFile(testingString, pathOut);
         processor.process("input", "output");
     }
 }

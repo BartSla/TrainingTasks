@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 public class FileProcessorTest {
@@ -14,20 +15,21 @@ public class FileProcessorTest {
     FileProcessor fileProcessor = new FileProcessor();
 
     @Test
-    public void shouldReadNumbersFromTestingFile() {
+    public void shouldReadNumbersFromTestingFile() throws IOException {
 
-        Integer [] expected = new Integer [] {3, 5, 66, 77, 99, 222, 333, 444, 555, 666};
-        List<Integer> result = fileProcessor.readNumbersFromFile(pathIn);
+        String[] expected = new String []{"3  5  66  77  99  222  333  444  555 666"};
+        List<String> result = fileProcessor.readNumbersFromFile(pathIn);
 
         Assert.assertArrayEquals(expected, result.toArray());
     }
 
     @Test
     public void shouldWriteNumbersToTestingFile() throws IOException {
+        List<String> testingString = Arrays.asList("3 + 5 + 66 + 77 + 99 + 222 + 333 + 444 + 555 + 666 = 2470");
+        fileProcessor.writeNumbersToFile(testingString, pathOut);
+        String expected = "[3 + 5 + 66 + 77 + 99 + 222 + 333 + 444 + 555 + 666 = 2470]";
 
-        String expected = "3 + 5 + 66 + 77 + 99 + 222 + 333 + 444 + 555 + 666 = 2470";
-        fileProcessor.writeNumbersToFile(expected, pathOut);
-        BufferedReader testRead =  new BufferedReader(new FileReader(pathOut));
+        BufferedReader testRead = new BufferedReader(new FileReader(pathOut));
 
         Assert.assertEquals(expected, testRead.readLine());
     }

@@ -2,22 +2,29 @@ package pl.coderstrust.inputOutput;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
-import static pl.coderstrust.inputOutput.NumbersProcessor.fileProcessor;
+
 
 public class NumbersProcessorTest {
-
+    FileProcessor fileProcessor = new FileProcessor();
     String pathIn = "src\\test\\resources\\testInput.txt";
-    List<Integer> result = fileProcessor.readNumbersFromFile(pathIn);
+    List<String> result = fileProcessor.readNumbersFromFile(pathIn);
     NumbersProcessor numbersProcessor = new NumbersProcessor();
 
-    @Test
-    public void shouldReturnStringBuilderArrayWithAddsAndSum() {
+    public NumbersProcessorTest() throws IOException {
+    }
 
-        String expected = "3 + 5 + 66 + 77 + 99 + 222 + 333 + 444 + 555 + 666 = 2470";
-        String numProcess = numbersProcessor.processLine(result);
+    @Test
+    public void shouldReturnStringListWithAddsAndSum() {
+
+        List<String> expected  = Arrays.asList("3 + 5 + 66 + 77 + 99 + 222 + 333 + 444 + 555 + 666 = 2470");
+        List<String> testingList = Arrays.asList(" 3  5  66  77  99  222  333  444  555  666");
+        List<String> numProcess = numbersProcessor.processLine(testingList);
         System.out.println(numbersProcessor.toString());
 
-        Assert.assertEquals(expected, numProcess.toString());
+        Assert.assertArrayEquals(new List[]{expected}, new List[]{numProcess});
     }
 }

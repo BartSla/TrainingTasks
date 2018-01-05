@@ -1,5 +1,7 @@
 package pl.coderstrust.inputOutput;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class NumbersProcessor {
@@ -7,24 +9,26 @@ public class NumbersProcessor {
     public NumbersProcessor() {
     }
 
-    public static FileProcessor fileProcessor = new FileProcessor();
-
-    public String processLine(List<Integer> inputList) {
-        StringBuilder sb = new StringBuilder();
+    public List<String> processLine(List<String> readLines) {
+        List<String> resultList = new ArrayList<>();
         int total = 0;
-        int k = 0;
-        for (int j = 0 + k; j < inputList.size(); j++) {
-            int temp = inputList.get(j);
-            sb.append(temp);
-            total += inputList.get(j);
-            if (j == (k + 9)) {
-                sb.append(" = " + total);
-                k += 10;
-            } else {
-                sb.append(" + ");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < readLines.size(); i++) {
+            String[] element = readLines.get(i).split("\\s+");
+            for (int j = 1; j < element.length; j++) {
+                int temp = Integer.parseInt(element[j]);
+                total += temp;
+                sb.append(temp);
+                if (j == element.length - 1) {
+                    sb.append(" = " + total);
+                    sb.append(System.getProperty("line.separator"));
+                } else {
+                    sb.append(" + ");
+                }
+
+                resultList = Arrays.asList(sb.toString());
             }
         }
-        return sb.toString();
+        return resultList;
     }
 }
-

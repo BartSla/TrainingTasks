@@ -8,48 +8,25 @@ public class FileProcessor {
     public FileProcessor() {
     }
 
-    public List<Integer> readNumbersFromFile(String fileName) {
-        List<Integer> inputString = new ArrayList<>();
-        BufferedReader file = null;
+    public List<String> readNumbersFromFile(String fileName) throws IOException {
+        List<String> readLines = new ArrayList<>();
 
-        try {
-            file = new BufferedReader(new FileReader(fileName));
-        } catch (FileNotFoundException e) {
-            System.out.println("Open file error");
-            System.exit(1);
-        }
-
-        try {
+        try (BufferedReader fileReader = new BufferedReader(new FileReader(fileName))) {
             String line;
-
-            while ((line = file.readLine()) != null) {
+            while ((line = fileReader.readLine()) != null) {
                 Scanner scanner = new Scanner(line);
                 while (scanner.hasNextInt()) {
-                    inputString.add(scanner.nextInt());
+                    readLines.add(scanner.nextLine());
                 }
             }
-        } catch (IOException e) {
-            System.out.println("File reading error.");
-            System.exit(2);
         }
-
-        try {
-            file.close();
-        } catch (IOException e) {
-            System.out.println("Error while close");
-            System.exit(3);
-        }
-        return inputString;
+        return readLines;
     }
 
-    public void writeNumbersToFile(String stringIn, String resultFileName) {
+    public void writeNumbersToFile(List<String> stringListIn, String resultFileName) throws IOException {
 
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(resultFileName));
-            writer.write(stringIn);
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(resultFileName))) {
+            writer.write(stringListIn.toString());
         }
     }
 }

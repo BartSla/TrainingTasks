@@ -1,28 +1,19 @@
 
 package pl.coderstrust.inputOutput;
 
-import java.util.List;
+import java.io.IOException;
 
 public class Processor {
+    private NumbersProcessor numbersProcessor;
+    private FileProcessor fileProcessor;
 
-    private NumbersProcessor numbersProcessor = new NumbersProcessor();
-    private FileProcessor fileProcessor = new FileProcessor();
-    private static String fileName = "src\\main\\resources\\1000.txt";
-    private static String resultFileName = "src\\main\\resources\\1000result.txt";
-
-    public Processor() {
+    public Processor(NumbersProcessor numbersProcessor, FileProcessor fileProcessor) {
+        this.numbersProcessor = numbersProcessor;
+        this.fileProcessor = fileProcessor;
     }
 
-    public void process(String fileName, String resultFileName) {
-        this.fileName = fileName;
-        this.resultFileName = resultFileName;
-        List<Integer> arrayOfPrimes = fileProcessor.readNumbersFromFile(fileName);
-        String resultString = numbersProcessor.processLine(arrayOfPrimes);
-        fileProcessor.writeNumbersToFile(resultString, resultFileName);
+    public void process(String fileName, String resultFileName) throws IOException {
+
+        fileProcessor.writeNumbersToFile(numbersProcessor.processLine(fileProcessor.readNumbersFromFile(fileName)), resultFileName);
     }
 }
-
-
-
-
-
