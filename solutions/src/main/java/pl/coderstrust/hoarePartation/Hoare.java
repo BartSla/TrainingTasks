@@ -2,38 +2,32 @@ package pl.coderstrust.hoarePartation;
 
 public class Hoare {
 
-       public static int partition(int[] items, int startIndex, int endIndex) {
-        int left = startIndex;
-        int right = endIndex - 1;
-        int pivot = items[startIndex];
+    public int[] partition(int[] array, int pivotIndex) {
+        int pivot = array[pivotIndex];
+        int temp;
+        int switchPivot;
+        int last = array.length - 1;
 
-        while (left <= right) {
-            while (left <= right && items[left] <= pivot) {
-                ++left;
-            }
-            while (left <= right && items[right] >= pivot) {
-                --right;
-            }
-            if (left < right) {
-                int temp_item = items[left];
-                items[left] = items[right];
-                items[right] = temp_item;
-            }
+        switchPivot = pivot;
+        pivot  = array[0];
+        array[0] = switchPivot;
+        array[pivotIndex] = pivot;
+        pivot = array[0];
+
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] <= pivot) {
+                temp = array[i];
+                array[i] = pivot;
+                array[i - 1] = temp;
+            } else if (array[i] > pivot && last > i) {
+                temp = array[i];
+                array[i] = array[last];
+                array[last] = temp;
+                last -= 1;
+                i--;
+            } else
+                break;
         }
-        int temp_item = items[left];
-        items[left] = pivot;
-        items[endIndex] = temp_item;
-
-        return left;
-    }
-
-
-
-    public static void main(String[] args) {
-        Hoare hoare = new Hoare();
-
-        int[] array = {1, 4, 9, 33, 4, 66, 88, 9};
-        System.out.println(
-        hoare.partition(array, 0,7));
+        return array;
     }
 }
