@@ -16,7 +16,7 @@ public class HoareTest {
     }
 
     @Test
-    public void numbersAreLowerThenPivot() {
+    public void numbersAreLowerOrHigherThenPivot() {
         int[] givenArray = {55, 6, 45, 66, 88, 909, 999, 5, 3, 7, 11, 22, 33, 333};
         int pivotIndex = 4;
         int pivot = givenArray[pivotIndex];
@@ -33,23 +33,6 @@ public class HoareTest {
         for (int i = 0; i < pivotLocation; i++) {
             Assert.assertTrue(ex[i] < pivot);
         }
-    }
-
-    @Test
-    public void numbersAreGreaterThenPivot() {
-        int[] givenArray = {55, 6, 45, 66, 88, 909, 999, 5, 3, 7, 11, 22, 33, 333};
-        int pivotIndex = 4;
-        int pivot = givenArray[pivotIndex];
-
-        //when
-        int[] ex = hoare.partition(givenArray, pivotIndex);
-        int pivotLocation = 0;
-        for (int i = 0; i < ex.length; i++) {
-            if (ex[i] == pivot) {
-                pivotLocation = i;
-            }
-        }
-        //then
         for (int i = pivotLocation + 1; i < ex.length; i++) {
             Assert.assertTrue(ex[i] > pivot);
         }

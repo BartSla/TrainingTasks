@@ -5,10 +5,9 @@ public class Hoare {
     public int[] partition(int[] array, int pivotIndex) {
         int pivot = array[pivotIndex];
         int temp;
-        int switchPivot;
         int last = array.length - 1;
 
-        switchPivot = pivot;
+        int switchPivot = pivot;
         pivot  = array[0];
         array[0] = switchPivot;
         array[pivotIndex] = pivot;
