@@ -12,10 +12,6 @@ public class Circle implements Calculable {
         return radius;
     }
 
-    public void setRadius(double radius) {
-        this.radius = radius;
-    }
-
     public double getArea() {
         return calculateArea();
     }

@@ -18,16 +18,8 @@ public class Triangle implements Calculable {
         return base;
     }
 
-    public void setBase(double base) {
-        this.base = base;
-    }
-
     public double getHeigh() {
         return height;
-    }
-
-    public void setHeigh(double heigh) {
-        this.height = heigh;
     }
 
     @Override

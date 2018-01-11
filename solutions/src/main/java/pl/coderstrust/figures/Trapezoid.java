@@ -16,25 +16,16 @@ public class Trapezoid implements Calculable {
         return baseFirst;
     }
 
-    public void setBaseFirst(double baseFirst) {
-        this.baseFirst = baseFirst;
-    }
 
     public double getBaseSecond() {
         return baseSecond;
     }
 
-    public void setBaseSecond(double baseSecond) {
-        this.baseSecond = baseSecond;
-    }
 
     public double getHeight() {
         return height;
     }
 
-    public void setHeight(double height) {
-        this.height = height;
-    }
 
     public double getArea() {
         return calculateArea();

@@ -19,16 +19,8 @@ public class Rectangle implements Calculable {
         return sideA;
     }
 
-    public void setSideA(double sideA) {
-        this.sideA = sideA;
-    }
-
     public double getSideB() {
         return sideB;
-    }
-
-    public void setSideB(double sideB) {
-        this.sideB = sideB;
     }
 
     public double getArea() {
