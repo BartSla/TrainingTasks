@@ -27,20 +27,12 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public boolean isEmpty() {
-        if (actSize == 0) {
-            return true;
-        }
-        return false;
+        return actSize == 0;
     }
 
     @Override
     public boolean contains(Object o) {
-        for (int i = 0; i < actSize; i++) {
-            if (o.equals(myArray[i])) {
-                return true;
-            }
-        }
-        return false;
+        return indexOf(o) >= 0;
     }
 
     @Override
@@ -121,7 +113,6 @@ public class MyArrayList<T> implements List<T> {
             Object obj = get(i);
             if (!collection.contains(obj)) {
                 remove(i);
-                return true;
             }
         }
         return false;
@@ -129,15 +120,18 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public void clear() {
+        for (int i = 0; i < actSize; i++)
+            myArray[i] = null;
         actSize = 0;
     }
 
+
     @Override
     public T get(int index) {
-        if (index < actSize) {
+        if (index >= 0 || index <=actSize) {
             return myArray[index];
         } else {
-            throw new ArrayIndexOutOfBoundsException();
+            throw new ArrayIndexOutOfBoundsException("Array Index is Out Of Bounds Index should be between 0 and "+ actSize);
         }
     }
 
@@ -174,7 +168,7 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public int lastIndexOf(Object o) {
-        for (int i = 0; i >= 0; i++) {
+        for (int i = myArray.length; i >= 0; i--) {
             if (o.equals(myArray[i])) {
                 return i;
             }

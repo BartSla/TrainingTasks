@@ -144,6 +144,8 @@ public abstract class AbstractListTest {
         testArray.add(1L);
         testArray.add(2L);
         testArray.clear();
+        testArray2.add("two");
+        testArray2.clear();
 
         Assert.assertArrayEquals(testArray2.toArray(), testArray.toArray());
     }
