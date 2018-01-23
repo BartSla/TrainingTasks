@@ -4,29 +4,24 @@ import java.util.concurrent.BlockingQueue;
 
 public class Producer implements Runnable {
 
-    private final BlockingQueue magazine;
+    private final BlockingQueue warehouse;
 
-    public Producer(BlockingQueue magazine) {
-        this.magazine = magazine;
+    public Producer(BlockingQueue warehouse) {
+        this.warehouse = warehouse;
     }
 
-
+    int counter = 0;
+    @Override
     public void run() {
         while (true) {
-            int i = 0;
-            if (i <= magazine.size()) {
-
-                try {
-                    System.out.println("Produced: " + i);
-                    magazine.put(i);
-                    Thread.sleep(1000);
-                   i++;
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            try {
+                System.out.println("Produced: " + counter);
+                warehouse.put(counter);
+                Thread.sleep(100);
+                counter++;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
 }
-
-
