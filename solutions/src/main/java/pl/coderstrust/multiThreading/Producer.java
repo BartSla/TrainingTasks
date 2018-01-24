@@ -1,26 +1,39 @@
 package pl.coderstrust.multiThreading;
 
-import java.util.concurrent.BlockingQueue;
+import java.util.Queue;
 
 public class Producer implements Runnable {
 
-    private final BlockingQueue warehouse;
+    private final Queue<Integer> warehouse;
+    private int maxSize;
 
-    public Producer(BlockingQueue warehouse) {
+    public Producer(Queue<Integer> warehouse, int maxSize) {
+
         this.warehouse = warehouse;
+        this.maxSize = maxSize;
     }
 
-    int counter = 0;
+    int counter = 1;
+
     @Override
     public void run() {
         while (true) {
-            try {
-                System.out.println("Produced: " + counter);
-                warehouse.put(counter);
-                Thread.sleep(100);
-                counter++;
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            synchronized (warehouse) {
+                try {
+                    while (warehouse.size() == maxSize) {
+                        System.out.println("Warehouse is full, "
+                                + "Producer thread waiting for "
+                                + "consumer to take something from warehouse");
+                        warehouse.wait();
+                    }
+                    System.out.println("Produced: " + counter++);
+                    warehouse.add(counter);
+                    warehouse.notify();
+                    Thread.sleep(100);
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
         }
     }
