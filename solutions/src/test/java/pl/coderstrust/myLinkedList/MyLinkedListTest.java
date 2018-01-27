@@ -1,22 +1,37 @@
 package pl.coderstrust.myLinkedList;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class MyLinkedListTest {
 
+    MyLinkedList list = new MyLinkedList();
+
     @Test
-    public void shouldReturn() {
+    public void add1() {
 
-        MyLinkedList list = new MyLinkedList();
+        list.add(1L);
+        list.add(2L);
+        long expected = 2L;
+        Assert.assertTrue(list.contains(expected));
+    }
 
-        list.add(15);
-        list.add(12);
-        list.add(13);
-        list.add(1);
+    @Test
+    public void contains() {
 
-        list.remove(15);
+        list.add(222L);
+        list.add(333L);
+        long expected = 444L;
+        Assert.assertFalse(list.contains(expected));
+    }
 
-        System.out.println(list.contains(15));
-//        System.out.println(list.iterator().hasNext());
+    @Test
+    public void remove1() {
+
+        list.add("bartek");
+        list.add("zuza");
+        list.remove("zuza");
+        String expected = "zuza";
+        Assert.assertFalse(list.contains(expected));
     }
 }

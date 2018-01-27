@@ -35,50 +35,38 @@ public class MyLinkedList<T> implements Iterable {
     }
 
     public boolean remove(T element) {
-        boolean result = false;
-        Node<T> previous = head;
-        Node<T> current = head;
-        while (current.nextNode != null || current == tail) {
-            if (current.element.equals(element)) {
-
-                if (size == 1) {
-                    head = null;
-                    tail = null;
-                } else if (current.equals(head)) {
-                    head = head.nextNode;
-                } else if (current.equals(tail)) {
-                    tail = previous;
-                    tail.nextNode = null;
-                } else {
-                    previous.nextNode = current.nextNode;
-                }
-                size--;
-                result = true;
-                break;
-            }
-            previous = current;
-            current = previous.nextNode;
+        if (head == null) {
+            return true;
         }
-        return result;
+
+        Node<T> previousNode = null;
+        Node<T> currentNode = head;
+        while (currentNode != null && currentNode.element != element) {
+            previousNode = currentNode;
+            currentNode = currentNode.nextNode;
+        }
+        if (previousNode == null) {
+            head = head.nextNode;
+            return true;
+        }
+        if (currentNode == null) {
+            System.out.println("A node with that value does not exist.");
+            return false;
+        }
+        previousNode.nextNode = currentNode.nextNode;
+        return true;
     }
 
     public boolean contains(T element) {
-
-        if (head == null) {
-            return false;
-        }
-        if (head.element == element) {
-            return true;
-        }
-        Node node = head;
-        while (head.nextNode != null) {
-            node = node.nextNode;
-
-            if (node.element != element) {
-                return false;
+        Node<T> current = head;
+        while (current != null) {
+            if (current.element.equals(element)) {
+                return true;
+            } else {
+                current = current.nextNode;
             }
         }
-        return true;
+        return false;
     }
 
     public Iterator<T> iterator() {
